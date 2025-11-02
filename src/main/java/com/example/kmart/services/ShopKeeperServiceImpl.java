@@ -67,15 +67,21 @@ public class ShopKeeperServiceImpl implements ShopKeeperService {
     //     return convertToDTO(updatedShopKeeper);
     // }
 
-    @Override
-    public ShopKeeperDTO updateShopKeeper(Long shopkeeper_id , ShopKeeperDTO shopKeeperDTO){
-        ShopKeeper shopKeeper = ShopKeeperRepository.findById(shopkeeper_id).orElseThrow();
-        shopKeeper.setFirst_name(shopKeeperDTO.first_name());
-        shopKeeper.setLast_name(shopKeeperDTO.last_name());
-        shopKeeper.setEmail(shopKeeperDTO.email());
-        ShopKeeper updatedShopKeeper = ShopKeeperRepository.save(shopKeeper);
-        return convertToDTO(updatedShopKeeper);
-    }
+@Override
+public ShopKeeperDTO updateShopKeeper(Long shopkeeperId, ShopKeeperDTO shopKeeperDTO) {
+    ShopKeeper shopKeeper = shopKeeperRepository.findById(shopkeeperId)
+            .orElseThrow(() -> new RuntimeException("ShopKeeper not found with ID: " + shopkeeperId));
+
+    shopKeeper.setFirstName(shopKeeperDTO.getFirstName());
+    shopKeeper.setLastName(shopKeeperDTO.getLastName());
+    shopKeeper.setEmail(shopKeeperDTO.getEmail());
+    shopKeeper.setPhoneNo(shopKeeperDTO.getPhoneNo());
+    shopKeeper.setAddress(shopKeeperDTO.getAddress());
+
+    ShopKeeper updatedShopKeeper = shopKeeperRepository.save(shopKeeper);
+    return convertToDTO(updatedShopKeeper);
+}
+
 
     @Override
     public void deleteShopKeeper(Long id) {

@@ -1,22 +1,41 @@
 package com.example.kmart.models;
 
-import jakarta.persistence.Id;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
+@Table(
+    name = "shopkeepers",
+    uniqueConstraints = {
+        @UniqueConstraint(columnNames = {"email"}),
+        @UniqueConstraint(columnNames = {"phone_no"})
+    }
+)
 @Getter
 @Setter
-public class ShopKeeper{
+@NoArgsConstructor
+@AllArgsConstructor
+public class ShopKeeper {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long ShopKeeper_id;
-    private String first_name;
-    private String last_name;
+    private Long shopKeeperId;
+
+    @Column(name = "firstName", nullable = false)
+    private String firstName;
+
+    @Column(name = "lastName", nullable = false)
+    private String lastName;
+
+    @Column(nullable = false, unique = true)
     private String email;
-    private String phone_no;
+
+    @Column(name = "phoneNo", nullable = false, unique = true, length = 15)
+    private String phoneNo;
+
+    @Column(name = "address", nullable = false)
     private String address;
-}  
+}
