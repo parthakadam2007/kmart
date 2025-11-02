@@ -69,16 +69,16 @@ public class ShopKeeperServiceImpl implements ShopKeeperService {
 
 @Override
 public ShopKeeperDTO updateShopKeeper(Long shopkeeperId, ShopKeeperDTO shopKeeperDTO) {
-    ShopKeeper shopKeeper = shopKeeperRepository.findById(shopkeeperId)
+    ShopKeeper shopKeeper = ShopKeeperRepository.findById(shopkeeperId)
             .orElseThrow(() -> new RuntimeException("ShopKeeper not found with ID: " + shopkeeperId));
 
-    shopKeeper.setFirstName(shopKeeperDTO.getFirstName());
-    shopKeeper.setLastName(shopKeeperDTO.getLastName());
-    shopKeeper.setEmail(shopKeeperDTO.getEmail());
-    shopKeeper.setPhoneNo(shopKeeperDTO.getPhoneNo());
-    shopKeeper.setAddress(shopKeeperDTO.getAddress());
+    shopKeeper.setFirstName(shopKeeperDTO.firstName());
+    shopKeeper.setLastName(shopKeeperDTO.lastName());
+    shopKeeper.setEmail(shopKeeperDTO.email());
+    shopKeeper.setPhoneNo(shopKeeperDTO.phoneNo());
+    shopKeeper.setAddress(shopKeeperDTO.address());
 
-    ShopKeeper updatedShopKeeper = shopKeeperRepository.save(shopKeeper);
+    ShopKeeper updatedShopKeeper = ShopKeeperRepository.save(shopKeeper);
     return convertToDTO(updatedShopKeeper);
 }
 
@@ -90,16 +90,16 @@ public ShopKeeperDTO updateShopKeeper(Long shopkeeperId, ShopKeeperDTO shopKeepe
 
     // Convert ShopKeeper Entity to ShopKeeperDTO
     private ShopKeeperDTO convertToDTO(ShopKeeper ShopKeeper) {
-        return new ShopKeeperDTO(ShopKeeper.getShopKeeper_id(), ShopKeeper.getFirst_name(), ShopKeeper.getLast_name(), ShopKeeper.getEmail(),ShopKeeper.getPhone_no(),ShopKeeper.getAddress());
+        return new ShopKeeperDTO(ShopKeeper.getShopKeeperId(), ShopKeeper.getFirstName(), ShopKeeper.getLastName(), ShopKeeper.getEmail(),ShopKeeper.getPhoneNo(),ShopKeeper.getAddress());
     }
 
     // Convert ShopKeeperDTO to ShopKeeper Entity
     private ShopKeeper convertToEntity(ShopKeeperDTO ShopKeeperDTO) {
         ShopKeeper ShopKeeper = new ShopKeeper();
-        ShopKeeper.setFirst_name(ShopKeeperDTO.first_name());
-        ShopKeeper.setLast_name(ShopKeeperDTO.last_name());
+        ShopKeeper.setFirstName(ShopKeeperDTO.firstName());
+        ShopKeeper.setLastName(ShopKeeperDTO.lastName());
         ShopKeeper.setEmail(ShopKeeperDTO.email());
-        ShopKeeper.setPhone_no(ShopKeeperDTO.phone_no());
+        ShopKeeper.setPhoneNo(ShopKeeperDTO.phoneNo());
         ShopKeeper.setAddress(ShopKeeperDTO.address());
         return ShopKeeper;
     }
