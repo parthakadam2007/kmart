@@ -8,10 +8,10 @@ import com.example.kmart.services.ShopKeeperService;
 import com.example.kmart.models.ShopKeeperDTO;
 
 
-import org.springframework.http.ResponseEntity;
+// import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
+// import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/shopkeepers")

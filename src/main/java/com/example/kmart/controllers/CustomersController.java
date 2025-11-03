@@ -1,12 +1,12 @@
 package com.example.kmart.controllers;
 
-import org.springframework.security.access.method.P;
+// import org.springframework.security.access.method.P;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.http.ResponseEntity;
+// import org.springframework.http.ResponseEntity;
 
-import com.example.kmart.models.Customer;
+// import com.example.kmart.models.Customer;
 import com.example.kmart.services.CustomerService;
 import com.example.kmart.models.CustomerDTO;
 import java.util.List;
